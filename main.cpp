@@ -6,7 +6,7 @@
 /*   By: adnen <adnen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 14:03:04 by adnen             #+#    #+#             */
-/*   Updated: 2026/02/15 15:42:09 by adnen            ###   ########.fr       */
+/*   Updated: 2026/02/15 16:05:14 by adnen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int main(int argc, char **argv)
 {
 	if (argc != 3)
-		return (ErrorsInMain("ERROR: WRONG NUMBER OF ARGUMENTS: ", "Usage: " + std::string(argv[0]) + " <-k | -g> <secret>"));
+		return (ErrorsInMain("Error wrong number of arguments: ", "Usage: " + std::string(argv[0]) + " <-k | -g> <secret>"));
 	std::string args;
 	args = argv[1];
 	int res;
@@ -26,7 +26,8 @@ int main(int argc, char **argv)
 	res2 = args.compare("-g");
 
 	if (res != 0 && res2 != 0)
-		return (ErrorsInMain("ERROR: WRONG ARGUMENT: ", "Usage: " + std::string(argv[0]) + " <-k | -g> <secret>"));
+		return (ErrorsInMain("Error wrong argument: ", "Usage: " + std::string(argv[0]) + " <-k | -g> <secret>"));
 	OtpClass otp;
+	otp.readFile(argv[2]);
 	return (0);
 }

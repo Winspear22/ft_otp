@@ -11,3 +11,5 @@ key.hex
 # Autres
 .DS_Store
 *.swp
+
+*.txt

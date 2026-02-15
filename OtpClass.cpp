@@ -6,11 +6,12 @@
 /*   By: adnen <adnen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 15:30:42 by adnen             #+#    #+#             */
-/*   Updated: 2026/02/15 15:47:20 by adnen            ###   ########.fr       */
+/*   Updated: 2026/02/15 16:04:40 by adnen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "OtpClass.hpp"
+#include <cerrno>
 
 OtpClass::OtpClass()
 {
@@ -33,4 +34,20 @@ OtpClass &OtpClass::operator=(const OtpClass &src)
 OtpClass::~OtpClass()
 {
 	std::cout << BOLD_BLUE << "OtpClass Destructor called." << RESET << std::endl;
+}
+
+void	OtpClass::readFile(const std::string &fileName)
+{
+	std::ifstream file(fileName.c_str());
+	if (!file.is_open())
+		return ErrorsInClassVoid("Error: cannot open file: ", fileName);
+	std::string line;
+
+	if (std::getline(file, line))
+	{
+		std::cout << line << std::endl;
+	}
+	else
+		return ErrorsInClassVoid("Error: ", "file is empty:" + fileName);
+	file.close();
 }
