@@ -6,7 +6,7 @@
 /*   By: adnen <adnen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 14:03:04 by adnen             #+#    #+#             */
-/*   Updated: 2026/02/15 17:26:43 by adnen            ###   ########.fr       */
+/*   Updated: 2026/02/15 17:32:13 by adnen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ int main(int argc, char **argv)
 		return (ErrorsInMain("Error wrong argument: ", "Usage: " + std::string(argv[0]) + " <-k | -g> <secret>"));
 	OtpClass otp;
 	otp.setFlag(argv[1]);
-	otp.readFile(argv[2]);
+
+	if (otp.getFlag() == "-g")
+	{
+		otp.readFile(argv[2]);
+		otp.saveKey();
+	}
 	return (0);
 }
