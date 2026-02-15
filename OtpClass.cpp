@@ -6,7 +6,7 @@
 /*   By: adnen <adnen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 15:30:42 by adnen             #+#    #+#             */
-/*   Updated: 2026/02/15 16:18:30 by adnen            ###   ########.fr       */
+/*   Updated: 2026/02/15 16:44:22 by adnen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,18 @@ bool	OtpClass::checkLine(const std::string &line)
 			return (ErrorsInClassBool("Error: ", "line is not hexadecimal"));
 	}
 	return (SUCCESS);
+}
+
+std::string OtpClass::_xorTransform(const std::string &data)
+{
+	int i;
+	std::string masterKey = "coucoulesamisjemappelleadnenetvousvousallezbienmoijevaissuperbi";
+	std::string result;
+	
+
+	i = -1;
+	result = data;
+	while (++i < data.size())
+		result[i] = data[i] ^ masterKey[i % masterKey.size()];
+	return result;
 }

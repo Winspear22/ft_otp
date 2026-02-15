@@ -6,7 +6,7 @@
 /*   By: adnen <adnen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 15:30:45 by adnen             #+#    #+#             */
-/*   Updated: 2026/02/15 16:17:46 by adnen            ###   ########.fr       */
+/*   Updated: 2026/02/15 16:26:52 by adnen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ class OtpClass
 		bool		checkLine(const std::string &line);
 	private:
 		std::string _key;
+		std::string _xorTransform(const std::string &data);
 };
 
 #endif
