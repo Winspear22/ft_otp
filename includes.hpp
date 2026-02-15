@@ -6,7 +6,7 @@
 /*   By: adnen <adnen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 14:02:26 by adnen             #+#    #+#             */
-/*   Updated: 2026/02/15 15:24:16 by adnen            ###   ########.fr       */
+/*   Updated: 2026/02/15 15:41:08 by adnen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@
 #define BOLD_CYAN "\033[1;36m"
 #define BOLD_WHITE "\033[1;37m"
 
-int		ErrorInMain(std::string mainMessage, std::string errorMessage);
+int		ErrorsInMain(std::string mainMessage, std::string errorMessage);
 
 #endif

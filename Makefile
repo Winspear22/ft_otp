@@ -2,7 +2,7 @@
 NAME          = ft_otp
 
 # Sources
-SRCS          = main.cpp ErrorManager.cpp
+SRCS          = main.cpp ErrorManager.cpp OtpClass.cpp
 
 # Fichiers Headers
 INCLUDES      = includes.hpp
