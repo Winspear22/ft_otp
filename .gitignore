@@ -1,0 +1,13 @@
+# Exécutables
+ft_otp
+
+# Objets
+*.o
+
+# Clés (Attention à ne pas commit tes clés de test !)
+ft_otp.key
+key.hex
+
+# Autres
+.DS_Store
+*.swp
