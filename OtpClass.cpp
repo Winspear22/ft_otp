@@ -6,7 +6,7 @@
 /*   By: adnen <adnen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 15:30:42 by adnen             #+#    #+#             */
-/*   Updated: 2026/02/15 16:44:22 by adnen            ###   ########.fr       */
+/*   Updated: 2026/02/15 16:52:29 by adnen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,12 @@ bool	OtpClass::checkLine(const std::string &line)
 	return (SUCCESS);
 }
 
+/*
+** ATTENTION : la masterKey est fixe et écrite en claire. C'est fait exprès pour 
+** simplifier l'exercice car cacher la masterKey n'est pas demandé. Pour un vrai
+** projet, la masterKey devrait être stockée dans un fichier sécurisé et 
+** accessible uniquement par le processus.
+*/
 std::string OtpClass::_xorTransform(const std::string &data)
 {
 	int i;
