@@ -6,7 +6,7 @@
 /*   By: adnen <adnen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 14:02:26 by adnen             #+#    #+#             */
-/*   Updated: 2026/02/15 16:00:26 by adnen            ###   ########.fr       */
+/*   Updated: 2026/02/15 16:14:05 by adnen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@
 
 int ErrorsInMain(std::string mainMessage, std::string errorMessage);
 void ErrorsInClassVoid(std::string mainMessage, std::string errorMessage);
+bool ErrorsInClassBool(std::string mainMessage, std::string errorMessage);
 
 
 #endif

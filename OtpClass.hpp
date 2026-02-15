@@ -6,7 +6,7 @@
 /*   By: adnen <adnen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 15:30:45 by adnen             #+#    #+#             */
-/*   Updated: 2026/02/15 15:54:35 by adnen            ###   ########.fr       */
+/*   Updated: 2026/02/15 16:17:46 by adnen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@ class OtpClass
 		~OtpClass();
 
 		void		readFile(const std::string &fileName);
+		bool		checkLine(const std::string &line);
 	private:
-	
+		std::string _key;
 };
 
 #endif

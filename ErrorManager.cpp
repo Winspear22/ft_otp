@@ -6,7 +6,7 @@
 /*   By: adnen <adnen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 15:21:32 by adnen             #+#    #+#             */
-/*   Updated: 2026/02/15 15:56:55 by adnen            ###   ########.fr       */
+/*   Updated: 2026/02/15 16:13:51 by adnen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,10 @@ void ErrorsInClassVoid(std::string mainMessage, std::string errorMessage)
 {
 	std::cerr << BOLD_WHITE << mainMessage << BOLD_RED << errorMessage << RESET<< std::endl;
 	return ;
+}
+
+bool ErrorsInClassBool(std::string mainMessage, std::string errorMessage)
+{
+	std::cerr << BOLD_WHITE << mainMessage << BOLD_RED << errorMessage << RESET<< std::endl;
+	return (FAILURE);
 }

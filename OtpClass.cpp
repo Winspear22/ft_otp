@@ -6,7 +6,7 @@
 /*   By: adnen <adnen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 15:30:42 by adnen             #+#    #+#             */
-/*   Updated: 2026/02/15 16:04:40 by adnen            ###   ########.fr       */
+/*   Updated: 2026/02/15 16:18:30 by adnen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,29 @@ void	OtpClass::readFile(const std::string &fileName)
 
 	if (std::getline(file, line))
 	{
-		std::cout << line << std::endl;
+		if (this->checkLine(line) == FAILURE)
+		{
+			file.close();
+			return ;
+		}
+		this->_key = line;
 	}
 	else
 		return ErrorsInClassVoid("Error: ", "file is empty:" + fileName);
 	file.close();
+}
+
+bool	OtpClass::checkLine(const std::string &line)
+{
+	int i;
+
+	i = -1;
+	if (line.length() != 64)
+		return (ErrorsInClassBool("Error: ", "line is not 64 characters long"));
+	while (line[++i])
+	{
+		if (!std::isxdigit(line[i]))
+			return (ErrorsInClassBool("Error: ", "line is not hexadecimal"));
+	}
+	return (SUCCESS);
 }
