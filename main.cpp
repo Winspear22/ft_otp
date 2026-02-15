@@ -6,12 +6,12 @@
 /*   By: adnen <adnen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 14:03:04 by adnen             #+#    #+#             */
-/*   Updated: 2026/02/15 16:05:14 by adnen            ###   ########.fr       */
+/*   Updated: 2026/02/15 17:26:43 by adnen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes.hpp"
 #include "OtpClass.hpp"
+#include "includes.hpp"
 
 int main(int argc, char **argv)
 {
@@ -24,10 +24,11 @@ int main(int argc, char **argv)
 
 	res = args.compare("-k");
 	res2 = args.compare("-g");
-
+				
 	if (res != 0 && res2 != 0)
 		return (ErrorsInMain("Error wrong argument: ", "Usage: " + std::string(argv[0]) + " <-k | -g> <secret>"));
 	OtpClass otp;
+	otp.setFlag(argv[1]);
 	otp.readFile(argv[2]);
 	return (0);
 }
