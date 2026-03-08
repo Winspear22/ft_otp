@@ -2,10 +2,10 @@
 NAME          = ft_otp
 
 # Sources
-SRCS          = main.cpp ErrorManager.cpp OtpClass.cpp
+SRCS          = main.cpp ErrorManager.cpp KeyGenerator.cpp OtpGenerator.cpp
 
 # Fichiers Headers
-INCLUDES      = includes.hpp
+INCLUDES      = includes.hpp KeyGenerator.hpp OtpGenerator.hpp
 
 OBJS          = $(SRCS:.cpp=.o)
 
