@@ -6,13 +6,14 @@
 /*   By: adnen <adnen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 15:30:42 by adnen             #+#    #+#             */
-/*   Updated: 2026/02/15 17:28:57 by adnen            ###   ########.fr       */
+/*   Updated: 2026/03/08 16:59:39 by adnen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "OtpClass.hpp"
 #include "includes.hpp"
 #include <cerrno>
+#include <cstddef>
 
 OtpClass::OtpClass()
 {
@@ -47,11 +48,11 @@ std::string OtpClass::getFlag() const
 	return (this->_flag);
 }
 
-void OtpClass::readFile(const std::string &fileName)
+bool OtpClass::readFile(const std::string &fileName)
 {
 	std::ifstream file(fileName.c_str());
 	if (!file.is_open())
-		return ErrorsInClassVoid("Error: cannot open file: ", fileName);
+		return ErrorsInClassBool("Error: cannot open file: ", fileName);
 	std::string line;
 
 	if (std::getline(file, line))
@@ -59,21 +60,22 @@ void OtpClass::readFile(const std::string &fileName)
 		if (this->checkLine(line) == FAILURE) 
 		{
 			file.close();
-			return;
+			return (FAILURE);
 		}
 		this->_key = line;
 	}
 	else
-		return ErrorsInClassVoid("Error: ", "file is empty:" + fileName);
+		return ErrorsInClassBool("Error: ", "file is empty:" + fileName);
 	file.close();
-	}
+	return (SUCCESS);
+}
 
 bool OtpClass::checkLine(const std::string &line)
 {
 	int i;
 
 	i = -1;
-	if (line.length() != 64)
+	if (line.length() < 64)
 		return (ErrorsInClassBool("Error: ", "line is not 64 characters long"));
 	while (line[++i]) 
 	{
@@ -91,16 +93,19 @@ bool OtpClass::checkLine(const std::string &line)
 	*/
 std::string OtpClass::_xorTransform(const std::string &data)
 {
-	int i;
+	size_t i;
 	std::string masterKey = "coucoulesamisjemappelleadnenetvousvousallezbienmoijevaissuperbi";
 	std::string result;
 
-	i = -1;
+	i = 0;
 	result = data;
-	while ((size_t)++i < data.size())
+	while (i < data.size())
+	{
 		result[i] = data[i] ^ masterKey[i % masterKey.size()];
-	return result;
+		i++;
 	}
+	return result;
+}
 
 void OtpClass::saveKey()
 {

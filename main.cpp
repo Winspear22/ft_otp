@@ -6,12 +6,13 @@
 /*   By: adnen <adnen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 14:03:04 by adnen             #+#    #+#             */
-/*   Updated: 2026/02/15 17:32:13 by adnen            ###   ########.fr       */
+/*   Updated: 2026/03/08 17:00:00 by adnen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "OtpClass.hpp"
 #include "includes.hpp"
+#include <cstdlib>
 
 int main(int argc, char **argv)
 {
@@ -32,8 +33,9 @@ int main(int argc, char **argv)
 
 	if (otp.getFlag() == "-g")
 	{
-		otp.readFile(argv[2]);
+		if (otp.readFile(argv[2]) == FAILURE)
+			return (EXIT_FAILURE);
 		otp.saveKey();
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }

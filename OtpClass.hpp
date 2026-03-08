@@ -6,7 +6,7 @@
 /*   By: adnen <adnen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 15:30:45 by adnen             #+#    #+#             */
-/*   Updated: 2026/02/15 17:20:48 by adnen            ###   ########.fr       */
+/*   Updated: 2026/03/08 16:59:12 by adnen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class OtpClass
 		OtpClass &operator=(const OtpClass &src);
 		~OtpClass();
 
-		void		readFile(const std::string &fileName);
+		bool		readFile(const std::string &fileName);
 		bool		checkLine(const std::string &line);
 
 		void		setFlag(const std::string &flag);
