@@ -6,7 +6,7 @@
 /*   By: adnen <adnen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 14:03:04 by adnen             #+#    #+#             */
-/*   Updated: 2026/03/08 17:00:00 by adnen            ###   ########.fr       */
+/*   Updated: 2026/03/08 17:58:01 by adnen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,12 @@ int main(int argc, char **argv)
 		if (otp.readFile(argv[2]) == FAILURE)
 			return (EXIT_FAILURE);
 		otp.saveKey();
+	}
+	if (otp.getFlag() == "-k")
+	{
+		if (otp.readEncryptedFile(argv[2]) == FAILURE)
+			return (EXIT_FAILURE);
+		otp.generateOTP();
 	}
 	return (EXIT_SUCCESS);
 }

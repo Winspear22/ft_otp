@@ -6,7 +6,7 @@
 /*   By: adnen <adnen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 15:30:45 by adnen             #+#    #+#             */
-/*   Updated: 2026/03/08 17:46:29 by adnen            ###   ########.fr       */
+/*   Updated: 2026/03/08 17:57:06 by adnen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,10 @@ class OtpClass
 		std::string						_xorTransform(const std::string &data);
 		std::vector<unsigned char>		_hexStringToBytes(const std::string &hex);
 		std::vector<unsigned char>		_counterToBytes(uint64_t counter);
-
+		std::vector<unsigned char>		_hmacSHA1(const std::vector<unsigned char> &key,
+											const std::vector<unsigned char> &message);
+		uint32_t						_dynamicCreationOfNumbers(const std::vector<unsigned char> &hmac);
+									
 		std::string _flag;
 };
 

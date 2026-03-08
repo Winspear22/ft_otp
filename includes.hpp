@@ -6,7 +6,7 @@
 /*   By: adnen <adnen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 14:02:26 by adnen             #+#    #+#             */
-/*   Updated: 2026/03/08 17:47:21 by adnen            ###   ########.fr       */
+/*   Updated: 2026/03/08 17:55:23 by adnen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <fstream>
+#include <openssl/sha.h>
 #include <iomanip>
 #include <iostream>
 #include <string>
