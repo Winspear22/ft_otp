@@ -6,7 +6,7 @@
 /*   By: adnen <adnen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 15:30:42 by adnen             #+#    #+#             */
-/*   Updated: 2026/03/08 17:38:14 by adnen            ###   ########.fr       */
+/*   Updated: 2026/03/08 17:46:37 by adnen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,20 @@ std::vector<unsigned char> OtpClass::_hexStringToBytes(const std::string &hex)
 		bytes.push_back(byte);
 		i += 2;
 	}
+	return bytes;
+}
+
+std::vector<unsigned char> OtpClass::_counterToBytes(uint64_t counter)
+{
+	std::vector<unsigned char> bytes(8);
+	bytes[0] = (counter >> 56) & 0xFF;  // octet le plus lourd
+	bytes[1] = (counter >> 48) & 0xFF;
+	bytes[2] = (counter >> 40) & 0xFF;
+	bytes[3] = (counter >> 32) & 0xFF;
+	bytes[4] = (counter >> 24) & 0xFF;
+	bytes[5] = (counter >> 16) & 0xFF;
+	bytes[6] = (counter >> 8) & 0xFF;
+	bytes[7] = counter & 0xFF;          // octet le plus léger
 	return bytes;
 }
 
