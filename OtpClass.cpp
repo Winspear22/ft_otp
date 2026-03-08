@@ -6,7 +6,7 @@
 /*   By: adnen <adnen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 15:30:42 by adnen             #+#    #+#             */
-/*   Updated: 2026/03/08 16:59:39 by adnen            ###   ########.fr       */
+/*   Updated: 2026/03/08 17:38:14 by adnen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,4 +116,42 @@ void OtpClass::saveKey()
 	file.write(cryptedKey.c_str(), cryptedKey.size());
 	file.close();
 	std::cout << BOLD_GREEN << "Key saved in ft_otp.key, key : " << BOLD_MAGENTA << cryptedKey << RESET << std::endl;
+}
+
+bool OtpClass::readEncryptedFile(const std::string &fileName)
+{
+	std::ifstream file(fileName.c_str(), std::ios::binary);
+	if (!file.is_open())
+		return ErrorsInClassBool("Error: cannot open file: ", fileName);
+	
+	std::string encryptedData(
+		(std::istreambuf_iterator<char>(file)),
+		std::istreambuf_iterator<char>()
+	);
+	file.close();
+	this->_key = this->_xorTransform(encryptedData);
+	return SUCCESS;
+}
+
+std::vector<unsigned char> OtpClass::_hexStringToBytes(const std::string &hex)
+{
+	size_t i;
+	std::vector<unsigned char> bytes;
+	std::string byteString;
+	unsigned char byte;
+
+	i = 0;
+	while (i < hex.length())
+	{
+		byteString = hex.substr(i, 2);
+		byte = static_cast<unsigned char>(std::stoul(byteString, nullptr, 16));
+		bytes.push_back(byte);
+		i += 2;
+	}
+	return bytes;
+}
+
+void OtpClass::generateOTP()
+{
+	
 }

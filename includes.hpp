@@ -6,7 +6,7 @@
 /*   By: adnen <adnen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 14:02:26 by adnen             #+#    #+#             */
-/*   Updated: 2026/02/15 16:14:05 by adnen            ###   ########.fr       */
+/*   Updated: 2026/03/08 17:27:09 by adnen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <iomanip>
 #include <iostream>
 #include <string>
+#include <iterator>
 #include <vector>
 #define SUCCESS true
 #define FAILURE false
