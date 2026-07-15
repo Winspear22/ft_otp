@@ -6,7 +6,7 @@
 /*   By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 20:16:32 by adaloui           #+#    #+#             */
-/*   Updated: 2026/07/15 21:36:49 by adaloui          ###   ########.fr       */
+/*   Updated: 2026/07/15 21:50:05 by adaloui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,16 @@ bool ArgsParser::parseArguments(int argc, char **argv)
 {
     int opt;
 
+	if (std::strlen(argv[1]) < 2 || argv[1][0] != '-')
+        return (_errorMsgHandler("Error, you must use either -k <argument> or -g <argument>.", FAILURE));
+
     while ((opt = getopt(argc, argv, "g:k:")) != -1)
     {
         switch (opt)
         {
 			case 'g':
                 if (!_fileTypeCheck(optarg) || !_fileContentCheck(optarg))
-                {
-					std::cerr << argv[0] << ": error: key must be 64 hexadecimal characters." << std::endl;
 					return (FAILURE);
-				}
                 break;
             case 'k':
                 if (!_fileTypeCheck(optarg) || !_magicNumberCheck(optarg))
@@ -55,17 +55,16 @@ bool ArgsParser::parseArguments(int argc, char **argv)
     return SUCCESS;
 }
 
-
 bool ArgsParser::_fileTypeCheck(const std::string &filePath)
 {
     struct stat fileStat;
 
     if (stat(filePath.c_str(), &fileStat) != 0)
-        return (FAILURE);
+        return (_errorMsgHandler(filePath + ": No such file or directory.", FAILURE));
     if (!S_ISREG(fileStat.st_mode))
-        return (FAILURE);
+        return (_errorMsgHandler(filePath + ": Not a regular file.", FAILURE));
     if (access(filePath.c_str(), R_OK) != 0)
-        return (FAILURE);
+        return (_errorMsgHandler(filePath + ": Permission denied.", FAILURE));
     return (SUCCESS);
 }
 
@@ -75,21 +74,19 @@ bool ArgsParser::_fileContentCheck(const std::string &filePath)
     std::string line;
 
     if (!file.is_open())
-        return (FAILURE);
+        return (_errorMsgHandler("key must be 64 hexadecimal characters.", FAILURE));
     if (!std::getline(file, line))
-        return (FAILURE);
+        return (_errorMsgHandler("key must be 64 hexadecimal characters.", FAILURE));
     file.close();
 
-    // Strip le \r si le fichier vient de Windows
     if (!line.empty() && line.back() == '\r')
         line.pop_back();
-
     if (line.length() != 64)
-        return (FAILURE);
+        return (_errorMsgHandler("key must be 64 hexadecimal characters.", FAILURE));
     for (size_t i = 0; i < line.length(); i++)
     {
         if (!std::isxdigit(line[i]))
-            return (FAILURE);
+            return (_errorMsgHandler("key must be 64 hexadecimal characters.", FAILURE));
     }
     return (SUCCESS);
 }
@@ -100,17 +97,16 @@ bool ArgsParser::_magicNumberCheck(const std::string &filePath)
     char magic[5];
 
     if (!file.is_open())
-        return (FAILURE);
+        return (_errorMsgHandler("invalid key file: " + filePath, FAILURE));
     file.read(magic, 5);
     file.close();
 
     if (std::strncmp(magic, "FTOTP", 5) != 0)
-        return (FAILURE);
+        return (_errorMsgHandler("invalid key file: " + filePath, FAILURE));
     return (SUCCESS);
 }
-
 bool ArgsParser::_errorMsgHandler(std::string msg, bool result)
 {
-	std::cout << msg << std::endl;
+	std::cerr << msg << std::endl;
 	return result;
 }
