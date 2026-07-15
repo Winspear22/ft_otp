@@ -6,7 +6,7 @@
 /*   By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 19:33:58 by adaloui           #+#    #+#             */
-/*   Updated: 2026/07/15 20:27:53 by adaloui          ###   ########.fr       */
+/*   Updated: 2026/07/15 21:18:17 by adaloui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 #include <iostream>
 #include <string>
 #include <getopt.h>
+#include <sys/stat.h>
+#include <fstream>
+#include <unistd.h>
+#include <cstring>
 
 #define SUCCESS true
 #define FAILURE false

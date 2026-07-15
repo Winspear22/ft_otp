@@ -6,7 +6,7 @@
 /*   By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 20:16:34 by adaloui           #+#    #+#             */
-/*   Updated: 2026/07/15 21:08:41 by adaloui          ###   ########.fr       */
+/*   Updated: 2026/07/15 21:14:36 by adaloui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ class ArgsParser
         static bool parseArguments(int argc, char **argv);
 
     private:
-        bool fileTypeCheck(void);
-        bool fileContentCheck(void);
-        bool magicNumberCheck(void);
+        static bool _fileTypeCheck(const std::string &filePath);
+        static bool _fileContentCheck(const std::string &filePath);
+        static bool _magicNumberCheck(const std::string &filePath);
 };
 
 
