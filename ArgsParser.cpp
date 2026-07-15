@@ -6,7 +6,7 @@
 /*   By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 20:16:32 by adaloui           #+#    #+#             */
-/*   Updated: 2026/07/15 20:27:00 by adaloui          ###   ########.fr       */
+/*   Updated: 2026/07/15 20:37:34 by adaloui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,31 @@ ArgsParser::ArgsParser(const ArgsParser &other)
 
 ArgsParser &ArgsParser::operator=(const ArgsParser &other)
 {
-    if (this != &other)
-    {
-        // Copy the data members from 'other' to 'this'
-        // For example:
-        // this->member1 = other.member1;
-        // this->member2 = other.member2;
-    }
+    if (this != &other) {}
     return *this;
 }
 
 ArgsParser::~ArgsParser() {}
+
+std::string ArgsParser::getFlag(void)
+{
+	return this->_flag;
+}
+
+std::string ArgsParser::getFilePath(void)
+{
+	return this->_filePath;
+}
+
+void		ArgsParser::setFlag(std::string flag)
+{
+	this->_flag = flag;
+}
+
+void		ArgsParser::setFilePath(std::string filePath)
+{
+	this->_filePath = filePath;
+}
 
 bool ArgsParser::parseArguments(int argc, char **argv)
 {
