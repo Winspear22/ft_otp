@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   includes.hpp                                       :+:      :+:    :+:   */
+/*   ArgsParser.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/15 19:33:58 by adaloui           #+#    #+#             */
-/*   Updated: 2026/07/15 20:27:53 by adaloui          ###   ########.fr       */
+/*   Created: 2026/07/15 20:16:34 by adaloui           #+#    #+#             */
+/*   Updated: 2026/07/15 20:22:02 by adaloui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INCLUDES_HPP
-#define INCLUDES_HPP
+#ifndef ARGSPARSER_HPP
+#define ARGSPARSER_HPP
 
-#include <iostream>
-#include <string>
-#include <getopt.h>
+#include "includes.hpp"
 
-#define SUCCESS true
-#define FAILURE false
+class ArgsParser
+{
+    public:
+        ArgsParser(void);
+        ArgsParser(const ArgsParser &other);
+        ArgsParser &operator=(const ArgsParser &other);
+        ~ArgsParser();
+
+        bool parseArguments(int argc, char **argv);
+
+};
+
 
 #endif
