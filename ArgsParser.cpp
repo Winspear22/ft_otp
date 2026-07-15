@@ -6,7 +6,7 @@
 /*   By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 20:16:32 by adaloui           #+#    #+#             */
-/*   Updated: 2026/07/15 20:37:34 by adaloui          ###   ########.fr       */
+/*   Updated: 2026/07/15 20:52:45 by adaloui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,26 +26,6 @@ ArgsParser &ArgsParser::operator=(const ArgsParser &other)
 }
 
 ArgsParser::~ArgsParser() {}
-
-std::string ArgsParser::getFlag(void)
-{
-	return this->_flag;
-}
-
-std::string ArgsParser::getFilePath(void)
-{
-	return this->_filePath;
-}
-
-void		ArgsParser::setFlag(std::string flag)
-{
-	this->_flag = flag;
-}
-
-void		ArgsParser::setFilePath(std::string filePath)
-{
-	this->_filePath = filePath;
-}
 
 bool ArgsParser::parseArguments(int argc, char **argv)
 {

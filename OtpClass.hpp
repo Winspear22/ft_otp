@@ -1,30 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ArgsParser.hpp                                     :+:      :+:    :+:   */
+/*   OtpClass.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/15 20:16:34 by adaloui           #+#    #+#             */
-/*   Updated: 2026/07/15 20:52:38 by adaloui          ###   ########.fr       */
+/*   Created: 2026/07/15 20:48:43 by adaloui           #+#    #+#             */
+/*   Updated: 2026/07/15 20:51:17 by adaloui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ARGSPARSER_HPP
-#define ARGSPARSER_HPP
+#ifndef OTPCLASS_HPP
+#define OTPCLASS_HPP
 
 #include "includes.hpp"
 
-class ArgsParser
+class OtpClass
 {
     public:
-        ArgsParser(void);
-        ArgsParser(const ArgsParser &other);
-        ArgsParser &operator=(const ArgsParser &other);
-        ~ArgsParser();
+		OtpClass(void);
+        OtpClass(const OtpClass &other);
+        OtpClass &operator=(const OtpClass &other);
+        ~OtpClass();
+		
+		std::string getFlag();
+        std::string getFilePath();
 
-        static bool parseArguments(int argc, char **argv);
+        void        setFlag(std::string flag);
+        void        setFilePath(std::string filePath);
+
+    private:
+        std::string _flag;
+        std::string _filePath;
 };
-
 
 #endif
