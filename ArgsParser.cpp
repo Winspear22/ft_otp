@@ -6,7 +6,7 @@
 /*   By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 20:16:32 by adaloui           #+#    #+#             */
-/*   Updated: 2026/07/15 21:18:33 by adaloui          ###   ########.fr       */
+/*   Updated: 2026/07/15 21:36:49 by adaloui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,10 @@ bool ArgsParser::parseArguments(int argc, char **argv)
         {
 			case 'g':
                 if (!_fileTypeCheck(optarg) || !_fileContentCheck(optarg))
-                    return (FAILURE);
+                {
+					std::cerr << argv[0] << ": error: key must be 64 hexadecimal characters." << std::endl;
+					return (FAILURE);
+				}
                 break;
             case 'k':
                 if (!_fileTypeCheck(optarg) || !_magicNumberCheck(optarg))
@@ -104,4 +107,10 @@ bool ArgsParser::_magicNumberCheck(const std::string &filePath)
     if (std::strncmp(magic, "FTOTP", 5) != 0)
         return (FAILURE);
     return (SUCCESS);
+}
+
+bool ArgsParser::_errorMsgHandler(std::string msg, bool result)
+{
+	std::cout << msg << std::endl;
+	return result;
 }

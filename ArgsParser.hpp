@@ -6,7 +6,7 @@
 /*   By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 20:16:34 by adaloui           #+#    #+#             */
-/*   Updated: 2026/07/15 21:14:36 by adaloui          ###   ########.fr       */
+/*   Updated: 2026/07/15 21:36:32 by adaloui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ class ArgsParser
         static bool _fileTypeCheck(const std::string &filePath);
         static bool _fileContentCheck(const std::string &filePath);
         static bool _magicNumberCheck(const std::string &filePath);
+        static bool _errorMsgHandler(std::string msg, bool result);
 };
 
 
