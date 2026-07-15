@@ -6,7 +6,7 @@
 /*   By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 20:16:32 by adaloui           #+#    #+#             */
-/*   Updated: 2026/07/15 20:52:45 by adaloui          ###   ########.fr       */
+/*   Updated: 2026/07/15 21:10:36 by adaloui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ bool ArgsParser::parseArguments(int argc, char **argv)
         switch (opt)
         {
             case 'g':
-                break;
+                break; // Ici on utilise la fonction fileContentCheck et fileTypeCheck
             case 'k':
-				break;
+				break; // Ici on utilise la fonction magicNumberCheck
             case '?':
                 std::cerr << "Error, you must use either -k <argument> or -g <argument>." << std::endl;
 				return (FAILURE);
@@ -46,4 +46,19 @@ bool ArgsParser::parseArguments(int argc, char **argv)
     }
 
     return SUCCESS;
+}
+
+bool ArgsParser::fileTypeCheck(void)
+{
+	return SUCCESS;
+}
+
+bool ArgsParser::fileContentCheck(void)
+{
+	return SUCCESS;
+}
+
+bool ArgsParser::magicNumberCheck(void)
+{
+	return SUCCESS;
 }

@@ -6,7 +6,7 @@
 /*   By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 20:16:34 by adaloui           #+#    #+#             */
-/*   Updated: 2026/07/15 20:52:38 by adaloui          ###   ########.fr       */
+/*   Updated: 2026/07/15 21:08:41 by adaloui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@ class ArgsParser
         ~ArgsParser();
 
         static bool parseArguments(int argc, char **argv);
+
+    private:
+        bool fileTypeCheck(void);
+        bool fileContentCheck(void);
+        bool magicNumberCheck(void);
 };
 
 
