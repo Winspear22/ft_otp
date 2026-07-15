@@ -6,13 +6,17 @@
 /*   By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 20:48:41 by adaloui           #+#    #+#             */
-/*   Updated: 2026/07/15 21:20:02 by adaloui          ###   ########.fr       */
+/*   Updated: 2026/07/15 21:52:34 by adaloui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "OtpClass.hpp"
 
-OtpClass::OtpClass(void) {}
+OtpClass::OtpClass(char **argv) 
+{
+    this->_flag = argv[1];
+    this->_filePath = argv[2];
+}
 
 OtpClass::OtpClass(const OtpClass &other)
 {

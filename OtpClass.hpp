@@ -6,7 +6,7 @@
 /*   By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 20:48:43 by adaloui           #+#    #+#             */
-/*   Updated: 2026/07/15 21:21:33 by adaloui          ###   ########.fr       */
+/*   Updated: 2026/07/15 21:52:07 by adaloui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 class OtpClass
 {
     public:
-		OtpClass(void);
+		OtpClass(char **argv);
         OtpClass(const OtpClass &other);
         OtpClass &operator=(const OtpClass &other);
         ~OtpClass();
