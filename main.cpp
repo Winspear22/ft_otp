@@ -6,13 +6,13 @@
 /*   By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 19:33:55 by adaloui           #+#    #+#             */
-/*   Updated: 2026/07/15 21:55:31 by adaloui          ###   ########.fr       */
+/*   Updated: 2026/07/18 18:57:07 by adaloui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes.hpp"
 #include "ArgsParser.hpp"
-#include "OtpClass.hpp"
+#include "OtpGClass.hpp"
 
 int main(int argc, char **argv)
 {
@@ -20,6 +20,6 @@ int main(int argc, char **argv)
     {
         return (1);
     }
-    OtpClass otp(argv);
+    OtpGClass generate(argv);
     return (0);
 }
