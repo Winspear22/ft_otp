@@ -29,6 +29,7 @@ OtpGClass &OtpGClass::operator=(const OtpGClass &other)
     {
         this->_flag = other._flag;
         this->_filePath = other._filePath;
+        this->_hexKey = other._hexKey;
     }
     return (*this);
 }
@@ -43,6 +44,11 @@ std::string OtpGClass::getFlag(void)
 std::string OtpGClass::getFilePath(void)
 {
     return (this->_filePath);
+}
+
+std::string OtpGClass::getHexKey(void)
+{
+    return (this->_hexKey);
 }
 
 void		OtpGClass::setFlag(std::string flag)
@@ -62,12 +68,21 @@ void        OtpGClass::setHexKey(std::string hexKey)
 
 bool        OtpGClass::readKey()
 {
-    std::filesystem::path path(this->_filePath);
     std::ifstream file(this->_filePath, std::ios::binary);
-	if (!file.is_open())
-	{
-		std::cerr << "Error: Could not open " << this->_filePath << std::endl;
-		return FAILURE;
-	}
-
+    if (!file.is_open())
+    {
+        std::cerr << "Error: Could not open " << this->_filePath << std::endl;
+        return FAILURE;
+    }
+    std::string fileContent((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
+    if (fileContent.empty())
+    {
+        std::cerr << "Error: File is empty" << std::endl;
+        return FAILURE;
+    }
+    if (fileContent.back() == '\n')
+        fileContent.pop_back();
+    this->setHexKey(fileContent);
+    std::cout << "Success: hexKey successfully read." <<std::endl;
+    return SUCCESS;
 }
