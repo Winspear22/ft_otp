@@ -180,3 +180,26 @@ bool    OtpGClass::encryptKey(void)
     EVP_CIPHER_CTX_free(ctx);
     return (SUCCESS);
 }
+
+bool    OtpGClass::writeKeyFile(void)
+{
+    std::ofstream file("ft_otp.key", std::ios::out | std::ios::binary);
+    if (!file.is_open())
+    {
+        std::cerr << "Error: Could not create ft_otp.key" << std::endl;
+        return (FAILURE);
+    }
+
+    // 1. Écrire le magic number (5 bytes)
+    const char *magic = "FTOTP";
+    file.write(magic, 5);
+
+    // 2. Écrire l'IV (16 bytes on utilise reinterpret cast car les vector ont des unsigned char)
+    file.write(reinterpret_cast<const char *>(this->_iv.data()), this->_iv.size());
+
+    // 3. Écrire le ciphertext
+    file.write(reinterpret_cast<const char *>(this->_ciphertext.data()), this->_ciphertext.size());
+
+    file.close();
+    return (SUCCESS);
+}

@@ -33,6 +33,7 @@ class OtpGClass
 
         bool        readKey(void);
         bool        encryptKey(void);
+		bool		writeKeyFile(void);
 
     private:
         std::string                 _flag;
