@@ -32,11 +32,14 @@ class OtpGClass
         void        setHexKey(std::string hexKey);
 
         bool        readKey(void);
+        bool        encryptKey(void);
 
     private:
         std::string _flag;
         std::string _filePath;
         std::string _hexKey;
+        std::vector<unsigned char> _iv;
+        std::vector<unsigned char> _ciphertext;
 };
 
 #endif

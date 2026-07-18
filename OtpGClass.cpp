@@ -86,3 +86,8 @@ bool        OtpGClass::readKey()
     std::cout << "Success: hexKey successfully read." <<std::endl;
     return SUCCESS;
 }
+
+bool        OtpGClass::encryptKey(void)
+{
+    
+}

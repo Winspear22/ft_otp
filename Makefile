@@ -6,13 +6,13 @@
 #    By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/15 19:34:25 by adaloui           #+#    #+#              #
-#    Updated: 2026/07/15 21:23:52 by adaloui          ###   ########.fr        #
+#    Updated: 2026/07/18 20:03:24 by adaloui          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= ft_otp
 
-SRCS		= main.cpp ArgsParser.cpp OtpClass.cpp
+SRCS		= main.cpp ArgsParser.cpp OtpGClass.cpp
 
 OBJDIR		= obj
 OBJS		= $(SRCS:%.cpp=$(OBJDIR)/%.o)
