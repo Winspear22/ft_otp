@@ -35,11 +35,15 @@ class OtpGClass
         bool        encryptKey(void);
 
     private:
-        std::string _flag;
-        std::string _filePath;
-        std::string _hexKey;
-        std::vector<unsigned char> _iv;
-        std::vector<unsigned char> _ciphertext;
+        std::string                 _flag;
+        std::string                 _filePath;
+        std::string                 _hexKey;
+        std::vector<unsigned char>  _iv;
+        std::vector<unsigned char>  _ciphertext;
+
+        std::vector<unsigned char>	_hexToBytes(void);
+        bool						_initAesKey(std::vector<unsigned char> &keyBytes, unsigned char *aesKey);
+        bool						_generateIv(void);
 };
 
 #endif

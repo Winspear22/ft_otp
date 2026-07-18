@@ -6,7 +6,7 @@
 /*   By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 19:33:58 by adaloui           #+#    #+#             */
-/*   Updated: 2026/07/18 20:08:00 by adaloui          ###   ########.fr       */
+/*   Updated: 2026/07/18 20:31:04 by adaloui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 #include <cstring>
 #include <filesystem>
 #include <vector>
+#include <openssl/evp.h>
+#include <openssl/rand.h>
 
 #define SUCCESS true
 #define FAILURE false
