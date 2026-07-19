@@ -6,7 +6,7 @@
 /*   By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/18 20:54:09 by adaloui           #+#    #+#             */
-/*   Updated: 2026/07/19 16:03:28 by adaloui          ###   ########.fr       */
+/*   Updated: 2026/07/19 16:43:20 by adaloui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ class OtpKClass
 		bool	readKeyFile(void);
 		bool	decryptKey(void);
 		void	generateTotp(void);
+
 
     private:
         bool								_readMasterKey(unsigned char *aesKey);

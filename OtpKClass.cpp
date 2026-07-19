@@ -6,7 +6,7 @@
 /*   By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/18 20:55:35 by adaloui           #+#    #+#             */
-/*   Updated: 2026/07/19 15:59:10 by adaloui          ###   ########.fr       */
+/*   Updated: 2026/07/19 16:43:06 by adaloui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,4 +121,48 @@ bool    OtpKClass::decryptKey(void)
     this->_decryptedKey.resize(decryptedLen + finalLen);
     EVP_CIPHER_CTX_free(ctx);
     return (SUCCESS);
+}
+
+void    OtpKClass::generateTotp(void)
+{
+    // === RFC 6238 : calculer T ===
+    // time(nullptr) = timestamp actuel en secondes
+    // On divise par 30 → le compteur change toutes les 30 secondes
+    unsigned long long T = static_cast<unsigned long long>(time(nullptr)) / 30;
+
+    // === Convertir T en 8 bytes big-endian ===
+    // T est un nombre (ex: 48392017)
+    // HMAC-SHA1 attend les données en bytes, pas en nombre
+    // Big-endian = le byte le plus significatif en premier
+    unsigned char timeBytes[8];
+    for (int i = 7; i >= 0; i--)
+    {
+        timeBytes[i] = T & 0xFF;  // On prend le byte le plus faible
+        T >>= 8;                  // On décale de 8 bits vers la droite
+    }
+
+    // === RFC 4226 : HMAC-SHA1 ===
+    // HMAC(Key, Message) = un hash de 20 bytes (SHA1 = 160 bits = 20 bytes)
+    unsigned char hmacResult[20];
+    unsigned int hmacLen = 20;
+    HMAC(EVP_sha1(), this->_decryptedKey.data(), this->_decryptedKey.size(), timeBytes, 8, hmacResult, &hmacLen);
+
+    // === RFC 4226 : Dynamic Truncation ===
+    // Le dernier byte du HMAC détermine l'offset
+    // On prend 4 bytes à partir de cet offset
+    int offset = hmacResult[19] & 0x0F;  // 0x0F = 00001111 → garde que les 4 derniers bits
+
+    // On extrait 4 bytes à partir de l'offset et on les combine en un int
+    // Le & 0x7F sur le premier byte force le bit de signe à 0 → toujours positif
+    int binary =
+        ((hmacResult[offset] & 0x7F) << 24) |
+        ((hmacResult[offset + 1] & 0xFF) << 16) |
+        ((hmacResult[offset + 2] & 0xFF) << 8) |
+        (hmacResult[offset + 3] & 0xFF);
+
+    // === RFC 4226 : modulo 10^6 → 6 digits ===
+    int otp = binary % 1000000;
+
+    // Afficher avec des zéros devant si nécessaire (ex: 004521)
+    std::cout << std::setfill('0') << std::setw(6) << otp << std::endl;
 }
