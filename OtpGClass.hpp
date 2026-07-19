@@ -43,7 +43,6 @@ class OtpGClass
         std::vector<unsigned char>  _ciphertext;
 
         std::vector<unsigned char>	_hexToBytes(void);
-        bool						_initAesKey(std::vector<unsigned char> &keyBytes, unsigned char *aesKey);
         bool						_generateIv(void);
         bool						_readMasterKey(unsigned char *aesKey);
 };

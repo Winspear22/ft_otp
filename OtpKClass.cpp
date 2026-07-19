@@ -6,7 +6,7 @@
 /*   By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/18 20:55:35 by adaloui           #+#    #+#             */
-/*   Updated: 2026/07/19 16:43:06 by adaloui          ###   ########.fr       */
+/*   Updated: 2026/07/19 17:05:32 by adaloui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,11 @@ OtpKClass::OtpKClass(const OtpKClass &other)
 
 OtpKClass &OtpKClass::operator=(const OtpKClass &other)
 {
-    if (this != &other)
-    {
-        (void)other;
+	if (this != &other)
+	{
+		this->_iv = other._iv;
+		this->_ciphertext = other._ciphertext;
+		this->_decryptedKey = other._decryptedKey;
     }
     return (*this);
 }
