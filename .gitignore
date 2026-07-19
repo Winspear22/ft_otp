@@ -13,3 +13,7 @@ key.hex
 *.swp
 
 *.txt
+
+obj
+
+ft_otp

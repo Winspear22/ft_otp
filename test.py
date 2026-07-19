@@ -1,1 +1,0 @@
-python3 -c "import hmac, hashlib, struct, time; key = bytes.fromhex('TA_CLE_HEX'); msg = struct.pack('>Q', int(time.time() / 30)); h = hmac.new(key, msg, hashlib.sha1).digest(); o = h[19] & 15; c = struct.unpack('>I', h[o:o+4])[0] & 0x7fffffff; print(f'{c % 1000000:06d}')"
