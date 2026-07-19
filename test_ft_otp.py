@@ -275,22 +275,26 @@ test("Vérification de l'algorithme TOTP avec des timestamps connus")
 # On ne peut pas tester exactement les vectors RFC car la clé est doublée
 # mais on vérifie que l'algo Python est cohérent
 rfc_key_40 = "3132333435363738393031323334353637383930"  # 40 hex = 20 bytes = "12345678901234567890"
+# RFC 6238 test vectors sont en 8 digits (% 100000000)
+# Notre programme (et oathtool) utilise 6 digits (% 1000000)
+# On prend les 6 derniers chiffres de chaque vector
 rfc_vectors = [
     (59, 94287082),
-    (1111111109, 07081804),
+    (1111111109, 7081804),
     (1111111111, 14050471),
     (1234567890, 89005924),
     (2000000000, 69279037),
 ]
 
 all_rfc_ok = True
-for ts, expected in rfc_vectors:
+for ts, expected_8dig in rfc_vectors:
+    expected_6dig = expected_8dig % 1000000  # tronquer a 6 digits
     result = compute_totp_at(rfc_key_40, ts)
-    if int(result) == expected:
-        pass  # ok implicitement
+    if int(result) == expected_6dig:
+        print(f"  T={ts//30:>12d} | attendu: {expected_6dig:06d} | obtenu: {result} | OK")
     else:
         all_rfc_ok = False
-        print(f"  T={ts//30:>12d} | attendu: {expected:08d} | obtenu: {result} | FAIL")
+        print(f"  T={ts//30:>12d} | attendu: {expected_6dig:06d} | obtenu: {result} | FAIL")
 
 if all_rfc_ok:
     ok("Tous les vectors RFC 6238 (SHA-1) sont corrects")
