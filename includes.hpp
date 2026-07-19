@@ -6,7 +6,7 @@
 /*   By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 19:33:58 by adaloui           #+#    #+#             */
-/*   Updated: 2026/07/19 16:47:43 by adaloui          ###   ########.fr       */
+/*   Updated: 2026/07/19 17:14:15 by adaloui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 #include <openssl/rand.h>
 #include <openssl/hmac.h>
 #include <iomanip>
+#include <ctime>
 
 #define SUCCESS true
 #define FAILURE false

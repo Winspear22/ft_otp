@@ -85,7 +85,7 @@ bool        OtpGClass::readKey()
     if (fileContent.back() == '\n')
         fileContent.pop_back();
     this->setHexKey(fileContent);
-    std::cout << "Success: hexKey successfully read." <<std::endl;
+    //std::cout << "Success: hexKey successfully read." <<std::endl;
     return SUCCESS;
 }
 
@@ -192,7 +192,7 @@ bool    OtpGClass::writeKeyFile(void)
 
 bool    OtpGClass::_readMasterKey(unsigned char *aesKey)
 {
-        std::ifstream file(".ft_otp_master", std::ios::binary);
+	std::ifstream file(".ft_otp_master", std::ios::binary);
     if (!file.is_open())
     {
         std::cerr << "Error: Could not open .ft_otp_master" << std::endl;

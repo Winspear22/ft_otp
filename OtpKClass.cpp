@@ -6,7 +6,7 @@
 /*   By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/18 20:55:35 by adaloui           #+#    #+#             */
-/*   Updated: 2026/07/19 17:05:32 by adaloui          ###   ########.fr       */
+/*   Updated: 2026/07/19 17:18:06 by adaloui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,8 +147,11 @@ void    OtpKClass::generateTotp(void)
     // HMAC(Key, Message) = un hash de 20 bytes (SHA1 = 160 bits = 20 bytes)
     unsigned char hmacResult[20];
     unsigned int hmacLen = 20;
-    HMAC(EVP_sha1(), this->_decryptedKey.data(), this->_decryptedKey.size(), timeBytes, 8, hmacResult, &hmacLen);
-
+	if (!HMAC(EVP_sha1(), this->_decryptedKey.data(), this->_decryptedKey.size(), timeBytes, 8, hmacResult, &hmacLen))
+	{
+		std::cerr << "Error: HMAC computation failed" << std::endl;
+		return;
+	}
     // === RFC 4226 : Dynamic Truncation ===
     // Le dernier byte du HMAC détermine l'offset
     // On prend 4 bytes à partir de cet offset

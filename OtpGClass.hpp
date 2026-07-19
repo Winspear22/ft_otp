@@ -23,17 +23,17 @@ class OtpGClass
         OtpGClass &operator=(const OtpGClass &other);
         ~OtpGClass();
 		
-		std::string getFlag(void);
-        std::string getFilePath(void);
-        std::string getHexKey(void);
+		std::string					getFlag(void);
+        std::string					getFilePath(void);
+        std::string					getHexKey(void);
 
-        void        setFlag(std::string flag);
-        void        setFilePath(std::string filePath);
-        void        setHexKey(std::string hexKey);
+        void						setFlag(std::string flag);
+        void						setFilePath(std::string filePath);
+        void						setHexKey(std::string hexKey);
 
-        bool        readKey(void);
-        bool        encryptKey(void);
-		bool		writeKeyFile(void);
+        bool						readKey(void);
+        bool						encryptKey(void);
+		bool						writeKeyFile(void);
 
     private:
         std::string                 _flag;

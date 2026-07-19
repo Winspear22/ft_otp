@@ -6,7 +6,7 @@
 /*   By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 20:16:32 by adaloui           #+#    #+#             */
-/*   Updated: 2026/07/15 21:50:05 by adaloui          ###   ########.fr       */
+/*   Updated: 2026/07/19 17:19:38 by adaloui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,17 @@ ArgsParser::~ArgsParser() {}
 bool ArgsParser::parseArguments(int argc, char **argv)
 {
     int opt;
-
-	if (std::strlen(argv[1]) < 2 || argv[1][0] != '-')
+    
+    if (std::strlen(argv[1]) < 2 || argv[1][0] != '-')
         return (_errorMsgHandler("Error, you must use either -k <argument> or -g <argument>.", FAILURE));
 
     while ((opt = getopt(argc, argv, "g:k:")) != -1)
     {
         switch (opt)
         {
-			case 'g':
+            case 'g':
                 if (!_fileTypeCheck(optarg) || !_fileContentCheck(optarg))
-					return (FAILURE);
+                    return (FAILURE);
                 break;
             case 'k':
                 if (!_fileTypeCheck(optarg) || !_magicNumberCheck(optarg))
@@ -48,10 +48,9 @@ bool ArgsParser::parseArguments(int argc, char **argv)
                 break;
             case '?':
                 std::cerr << "Error, you must use either -k <argument> or -g <argument>." << std::endl;
-				return (FAILURE);
+                return (FAILURE);
         }
     }
-
     return SUCCESS;
 }
 
@@ -107,6 +106,6 @@ bool ArgsParser::_magicNumberCheck(const std::string &filePath)
 }
 bool ArgsParser::_errorMsgHandler(std::string msg, bool result)
 {
-	std::cerr << msg << std::endl;
-	return result;
+    std::cerr << msg << std::endl;
+    return result;
 }
