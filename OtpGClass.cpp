@@ -198,8 +198,9 @@ bool    OtpGClass::_readMasterKey(unsigned char *aesKey)
         std::cerr << "Error: Could not open .ft_otp_master" << std::endl;
         return (FAILURE);
     }
-    std::string content((std::istreambuf_iterator<char>(file)),
-                        std::istreambuf_iterator<char>());
+    std::string content((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
+	if (!content.empty() && content.back() == '\n')
+		content.pop_back();
     if (content.size() < 32)
     {
         std::cerr << "Error: Master key too short" << std::endl;

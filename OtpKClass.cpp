@@ -6,7 +6,7 @@
 /*   By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/18 20:55:35 by adaloui           #+#    #+#             */
-/*   Updated: 2026/07/19 17:18:06 by adaloui          ###   ########.fr       */
+/*   Updated: 2026/07/19 17:30:49 by adaloui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,9 @@ bool    OtpKClass::_readMasterKey(unsigned char *aesKey)
         std::cerr << "Error: Could not open .ft_otp_master" << std::endl;
         return (FAILURE);
     }
-    std::string content((std::istreambuf_iterator<char>(file)),
-                        std::istreambuf_iterator<char>());
+    std::string content((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
+	if (!content.empty() && content.back() == '\n')
+		content.pop_back();
     if (content.size() < 32)
     {
         std::cerr << "Error: Master key too short" << std::endl;
