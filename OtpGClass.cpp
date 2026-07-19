@@ -107,21 +107,6 @@ std::vector<unsigned char>    OtpGClass::_hexToBytes(void)
     return (keyBytes);
 }
 
-bool    OtpGClass::_initAesKey(std::vector<unsigned char> &keyBytes, unsigned char *aesKey)
-{
-    // AES-256 exige une clé de exactement 32 bytes
-    // Si notre clé est plus courte, on la complète avec des 0
-    // Si plus longue, on la tronque à 32
-    std::memset(aesKey, 0, 32);
-    size_t copyLen;
-    if (keyBytes.size() < 32)
-        copyLen = keyBytes.size();
-    else
-        copyLen = 32;
-    std::memcpy(aesKey, keyBytes.data(), copyLen);
-    return (SUCCESS);
-}
-
 bool    OtpGClass::_generateIv(void)
 {
     unsigned char iv[16];
@@ -145,7 +130,8 @@ bool    OtpGClass::encryptKey(void)
 
     // 2. Préparer la clé AES-256 (32 bytes)
     unsigned char aesKey[32];
-    this->_initAesKey(keyBytes, aesKey);
+    if (this->_readMasterKey(aesKey) == FAILURE)
+        return (FAILURE);
 
     // 3. Générer un IV aléatoire (16 bytes)
     if (this->_generateIv() == FAILURE)
@@ -200,6 +186,26 @@ bool    OtpGClass::writeKeyFile(void)
     // 3. Écrire le ciphertext
     file.write(reinterpret_cast<const char *>(this->_ciphertext.data()), this->_ciphertext.size());
 
+    file.close();
+    return (SUCCESS);
+}
+
+bool    OtpGClass::_readMasterKey(unsigned char *aesKey)
+{
+        std::ifstream file(".ft_otp_master", std::ios::binary);
+    if (!file.is_open())
+    {
+        std::cerr << "Error: Could not open .ft_otp_master" << std::endl;
+        return (FAILURE);
+    }
+    std::string content((std::istreambuf_iterator<char>(file)),
+                        std::istreambuf_iterator<char>());
+    if (content.size() < 32)
+    {
+        std::cerr << "Error: Master key too short" << std::endl;
+        return (FAILURE);
+    }
+    std::memcpy(aesKey, content.c_str(), 32);
     file.close();
     return (SUCCESS);
 }
