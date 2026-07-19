@@ -96,7 +96,7 @@ std::vector<unsigned char>    OtpGClass::_hexToBytes(void)
 
     // On parcourt la string hex 2 chars par 2
     // "31323334" → [0x31, 0x32, 0x33, 0x34]
-    while (++i + 1 < this->_hexKey.length())
+    while (++i + 1 < static_cast<int>(this->_hexKey.length()))
     {
         std::string byteStr = this->_hexKey.substr(i, 2);
         // On convertit la paire hex en un byte (0-255)
