@@ -6,7 +6,7 @@
 /*   By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 20:16:32 by adaloui           #+#    #+#             */
-/*   Updated: 2026/07/19 17:19:38 by adaloui          ###   ########.fr       */
+/*   Updated: 2026/07/19 18:16:38 by adaloui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ bool ArgsParser::_fileContentCheck(const std::string &filePath)
 
     if (!line.empty() && line.back() == '\r')
         line.pop_back();
-    if (line.length() != 64)
+    if (line.length() < 64)
         return (_errorMsgHandler("key must be 64 hexadecimal characters.", FAILURE));
     for (size_t i = 0; i < line.length(); i++)
     {

@@ -85,7 +85,6 @@ bool        OtpGClass::readKey()
     if (fileContent.back() == '\n')
         fileContent.pop_back();
     this->setHexKey(fileContent);
-    //std::cout << "Success: hexKey successfully read." <<std::endl;
     return SUCCESS;
 }
 
@@ -187,6 +186,7 @@ bool    OtpGClass::writeKeyFile(void)
     file.write(reinterpret_cast<const char *>(this->_ciphertext.data()), this->_ciphertext.size());
 
     file.close();
+	std::cout << "Key was successfully saved in ft_otp.key." << std::endl;
     return (SUCCESS);
 }
 
